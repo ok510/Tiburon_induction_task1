@@ -9,7 +9,7 @@ class FrequencyControl(Node):
 
         self.publisher_ = self.create_publisher(String, 'chatter', 10)
 
-        # Timer → runs every 0.1 sec (10 Hz)
+        
         self.timer = self.create_timer(0.1, self.publish_message)
 
         self.count = 0

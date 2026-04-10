@@ -30,18 +30,18 @@ class FollowTheGirl(Node):
     def follow(self):
         msg = Twist()
 
-        dx = self.target_pose.x - self.follower_pose.x
-        dy = self.target_pose.y - self.follower_pose.y
+        xdis = self.target_pose.x - self.follower_pose.x
+        ydis = self.target_pose.y - self.follower_pose.y
 
-        distance = math.sqrt(dx**2 + dy**2)
-        angle = math.atan2(dy, dx)
-
-        
-        msg.linear.x = 1.5 * distance
-        msg.angular.z = 4.0 * (angle - self.follower_pose.theta)
+        total_distance = math.sqrt((xdis**2) + (ydis**2))
+        angle = math.atan(ydis/xdis)
 
         
-        if distance < 0.1:
+        msg.linear.x =total_distance
+        msg.angular.z = angle
+
+        
+        if total_distance < 0.1:
             msg.linear.x = 0.0
             msg.angular.z = 0.0
 

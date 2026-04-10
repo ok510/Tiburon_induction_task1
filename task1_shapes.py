@@ -19,7 +19,7 @@ class Drawshapes(Node):
 
         while time.time() < end_time:
             self.publisher_.publish(msg)
-            time.sleep(0.01)   # 🔥 IMPORTANT FIX
+            time.sleep(0.01)   
             
         msg.linear.x = 0.0
         msg.angular.z = 0.0
@@ -28,7 +28,7 @@ class Drawshapes(Node):
     def draw_square(self):
         for _ in range(4):
             self.move(2.0, 0.0, 2.0)
-            self.move(0.0, math.pi/2, 1.0)   # 🔥 FIXED
+            self.move(0.0, math.pi/2, 1.0)   
 
     def draw_triangle(self):
         for _ in range(3):
@@ -39,7 +39,7 @@ def main():
     rclpy.init()
     node = Drawshapes()
 
-    time.sleep(2)   # allow connection
+    time.sleep(2)  
     node.draw_square()
 
     time.sleep(2)

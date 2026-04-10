@@ -33,7 +33,7 @@ class Drawshapes(Node):
     def draw_triangle(self):
         for _ in range(3):
             self.move(2.0, 0.0, 2.0)
-            self.move(0.0, 2*math.pi/3, 1.0)
+            self.move(0.0, 2*math.pi/3, 2.0)
 
 def main():
     rclpy.init()

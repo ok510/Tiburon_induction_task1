@@ -9,14 +9,14 @@ class FollowTheGirl(Node):
     def __init__(self):
         super().__init__('follow_the_girl')
 
-        # Publisher for follower turtle
+        
         self.publisher_ = self.create_publisher(Twist, '/turtle2/cmd_vel', 10)
 
-        # Store poses
-        self.target_pose = Pose()    # girl (turtle1)
-        self.follower_pose = Pose()  # turtle2
+        
+        self.target_pose = Pose()   
+        self.follower_pose = Pose()  
 
-        # Subscribers
+        
         self.create_subscription(Pose, '/turtle1/pose', self.target_callback, 10)
         self.create_subscription(Pose, '/turtle2/pose', self.follower_callback, 10)
 
@@ -36,12 +36,12 @@ class FollowTheGirl(Node):
         distance = math.sqrt(dx**2 + dy**2)
         angle = math.atan2(dy, dx)
 
-        # Proportional control
+        
         msg.linear.x = 1.5 * distance
         msg.angular.z = 4.0 * (angle - self.follower_pose.theta)
 
-        # Stop if very close
-        if distance < 0.2:
+        
+        if distance < 0.1:
             msg.linear.x = 0.0
             msg.angular.z = 0.0
 
